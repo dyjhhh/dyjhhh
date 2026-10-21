@@ -11,7 +11,7 @@ These repositories share selected parts of that work. The runnable examples use 
 | 🧠 [**Agent OS**](https://github.com/dyjhhh/agent-os) | Architecture notes, sample skills, and a runnable demo of durable task state across sessions. Start here for the overall system. |
 | 🧪 [**Agent Eval Gates**](https://github.com/dyjhhh/agent-eval-gates) | Deterministic output checks and a demo that binds artifact review and approval to specific evidence versions. |
 | 🛡️ [**Agent Security Hooks**](https://github.com/dyjhhh/agent-security-hooks) | Bounded tool guards, PDF screening, regression tests, and documented limitations. |
-| 🚨 [**Agent Reliability**](https://github.com/dyjhhh/agent-reliability) | Offline alert decisions (spaced confirmation, deduplication, caller-reported delivery acknowledgement), successful-work evidence checks, calendar-job replay, and a pre-send output guard. |
+| 🚨 [**Agent Reliability**](https://github.com/dyjhhh/agent-reliability) | Offline alert decisions (spaced confirmation, deduplication, caller-reported delivery acknowledgement), successful-work evidence checks, calendar-job replay, a pre-send output guard, inbox-to-ledger delivery reconciliation, and a check for listeners that are alive but no longer receiving. |
 | 🔁 [**Self-Improving Loops**](https://github.com/dyjhhh/self-improving-loops) | A small feedback-to-configuration workflow with explicit approval, regression checks, and a traceable receipt. |
 
 These are personal projects built with AI-assisted development: I make the design choices and review the changes, and Claude Code and Codex assist with implementation. I care about being able to explain the design, reproduce the behavior, and recognize where human judgment is still needed.
