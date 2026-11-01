@@ -1,8 +1,22 @@
 # Hi, I'm Yujia 👋
 
-I'm an engineering manager who likes building useful AI products and the systems behind them. My background includes Amazon and Coursera, where I've worked on customer-facing products and data platforms and helped engineers grow.
+I'm an engineering manager and a player-coach: I build AI agent harnesses, meaning the workflows, orchestration and tools around Claude Code and Codex, and I run them in daily use. A team gets patterns that have already broken in practice and been fixed, with the incident write-ups below.
 
-Outside work, I build a personal agent system with Claude Code and Codex. Running it has given me plenty of practical questions to work through: how an agent picks up where it left off, how to check its output, when to alert a person, and how to turn feedback into a change worth keeping.
+My background includes Amazon and Coursera, where I've worked on customer-facing products and data platforms and helped engineers grow.
+
+## Lessons
+
+Five incidents from running always-on agents, each written up in public, and the rule each one left behind:
+
+1. [**Done means the outcome was confirmed, not that a step ran**](https://github.com/dyjhhh/agent-reliability/blob/main/docs/operations-notes.md#marked-seen-is-not-delivered): a pipeline marked a message seen before delivering it, and every health check stayed green while the message was never forwarded.
+2. [**A live process is not a working agent**](https://github.com/dyjhhh/agent-reliability/blob/main/docs/operations-notes.md#alive-is-not-receiving): after five silent days, a watchdog that only checked the process could not tell a quiet chat from a listener that had stopped receiving.
+3. [**Every fact needs exactly one owner**](https://github.com/dyjhhh/agent-os/blob/main/docs/incidents.md): a closed item kept returning in scheduled reports because copies lived in several files and the report read a stale one (incident 1).
+4. [**Keep tests out of production state by construction, not by convention**](https://github.com/dyjhhh/agent-reliability/blob/main/docs/operations-notes.md#tests-must-not-see-the-real-home): one test run used the real home directory, wrote into production history and triggered recovery notices for outages that never happened.
+5. [**Missing proof is not a failure**](https://github.com/dyjhhh/agent-reliability/blob/main/docs/operations-notes.md#expired-evidence-is-not-an-outage): expired end-to-end test evidence paged as an outage for about 32 hours, so aged evidence now becomes one retest reminder while real failures still page.
+
+The common thread is [principle 2](https://github.com/dyjhhh/agent-os/blob/main/docs/principles.md#2-a-proxy-signal-never-carries-the-heaviest-conclusion): a cheap proxy signal should never carry the most expensive conclusion.
+
+## Projects
 
 These repositories share selected parts of that work. The runnable examples use synthetic data, run offline (`make test` in each repository), and explain what they check and what they leave out.
 
@@ -17,17 +31,5 @@ These repositories share selected parts of that work. The runnable examples use 
 | 📋 [**Careers Watch**](https://github.com/dyjhhh/careers-watch) | A change feed over several hundred public job-board APIs (Greenhouse, Ashby, Lever, Workday): exact posting identity, a zero-token prefilter that decides which few postings reach a model, bounded scoring batches, and usage-limit refusals that keep the queue and charge nothing. |
 
 These are personal projects built with AI-assisted development: I make the design choices and review the changes, and Claude Code and Codex assist with implementation. I care about being able to explain the design, reproduce the behavior, and recognize where human judgment is still needed.
-
-## Lessons
-
-Five incidents from running always-on agents, each written up in public, and the rule each one left behind:
-
-1. [**Done means the outcome was confirmed, not that a step ran**](https://github.com/dyjhhh/agent-reliability/blob/main/docs/operations-notes.md#marked-seen-is-not-delivered): a pipeline marked a message seen before delivering it, and every health check stayed green while the message was never forwarded.
-2. [**A live process is not a working agent**](https://github.com/dyjhhh/agent-reliability/blob/main/docs/operations-notes.md#alive-is-not-receiving): after five silent days, a watchdog that only checked the process could not tell a quiet chat from a listener that had stopped receiving.
-3. [**Every fact needs exactly one owner**](https://github.com/dyjhhh/agent-os/blob/main/docs/incidents.md): a closed item kept returning in scheduled reports because copies lived in several files and the report read a stale one (incident 1).
-4. [**Keep tests out of production state by construction, not by convention**](https://github.com/dyjhhh/agent-reliability/blob/main/docs/operations-notes.md#tests-must-not-see-the-real-home): one test run used the real home directory, wrote into production history and triggered recovery notices for outages that never happened.
-5. [**Missing proof is not a failure**](https://github.com/dyjhhh/agent-reliability/blob/main/docs/operations-notes.md#expired-evidence-is-not-an-outage): expired end-to-end test evidence paged as an outage for about 32 hours, so aged evidence now becomes one retest reminder while real failures still page.
-
-The common thread is [principle 2](https://github.com/dyjhhh/agent-os/blob/main/docs/principles.md#2-a-proxy-signal-never-carries-the-heaviest-conclusion): a cheap proxy signal should never carry the most expensive conclusion.
 
 [LinkedIn](https://www.linkedin.com/in/yujiadong) · [Start with Agent OS](https://github.com/dyjhhh/agent-os)
