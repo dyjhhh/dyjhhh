@@ -18,4 +18,16 @@ These repositories share selected parts of that work. The runnable examples use 
 
 These are personal projects built with AI-assisted development: I make the design choices and review the changes, and Claude Code and Codex assist with implementation. I care about being able to explain the design, reproduce the behavior, and recognize where human judgment is still needed.
 
+## Lessons
+
+Five incidents from running always-on agents, each written up in public, and the rule each one left behind:
+
+1. [**Done means the outcome was confirmed, not that a step ran**](https://github.com/dyjhhh/agent-reliability/blob/main/docs/operations-notes.md#marked-seen-is-not-delivered): a pipeline marked a message seen before delivering it, and every health check stayed green while the message was never forwarded.
+2. [**A live process is not a working agent**](https://github.com/dyjhhh/agent-reliability/blob/main/docs/operations-notes.md#alive-is-not-receiving): after five silent days, a watchdog that only checked the process could not tell a quiet chat from a listener that had stopped receiving.
+3. [**Every fact needs exactly one owner**](https://github.com/dyjhhh/agent-os/blob/main/docs/incidents.md): a closed item kept returning in scheduled reports because copies lived in several files and the report read a stale one (incident 1).
+4. [**Keep tests out of production state by construction, not by convention**](https://github.com/dyjhhh/agent-reliability/blob/main/docs/operations-notes.md#tests-must-not-see-the-real-home): one test run used the real home directory, wrote into production history and triggered recovery notices for outages that never happened.
+5. [**Missing proof is not a failure**](https://github.com/dyjhhh/agent-reliability/blob/main/docs/operations-notes.md#expired-evidence-is-not-an-outage): expired end-to-end test evidence paged as an outage for about 32 hours, so aged evidence now becomes one retest reminder while real failures still page.
+
+The common thread is [principle 2](https://github.com/dyjhhh/agent-os/blob/main/docs/principles.md#2-a-proxy-signal-never-carries-the-heaviest-conclusion): a cheap proxy signal should never carry the most expensive conclusion.
+
 [LinkedIn](https://www.linkedin.com/in/yujiadong) · [Start with Agent OS](https://github.com/dyjhhh/agent-os)
